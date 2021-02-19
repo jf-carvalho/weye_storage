@@ -9,6 +9,12 @@ class ControllerSettingSetting extends Controller {
 
 		$this->load->model('setting/setting');
 
+		if(isset($this->request->get['expandmenu'])){
+			$expanded = ($this->request->get['expanded']);
+			$this->model_setting_setting->editSettingValue('config', 'menu_is_expanded', $expanded);
+			die(); 
+		}
+
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->model_setting_setting->editSetting('config', $this->request->post);
 
