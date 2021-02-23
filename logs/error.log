@@ -3,3 +3,4 @@
 10-02-2021 15:11:08 - ParseError:  syntax error, unexpected ''href'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' no arquivo C:\wamp64\www\weye\catalog\controller\common\menu.php na linha 31
 10-02-2021 16:58:24 - Twig_Error_Syntax:  Unexpected "endfor" tag (expecting closing tag for the "if" tag defined near line 11) in "weye/template/product/products_list.twig" at line 41. no arquivo C:\wamp64\www\weye\system\library\template\Twig\Parser.php na linha 172
 10-02-2021 18:29:29 - Twig_Error_Loader:  Unable to find template "weye/template/products/products_list.twig" (looked into: C:/wamp64/www/weye/catalog/view/theme). no arquivo C:\wamp64\www\weye\system\library\template\Twig\Loader\Filesystem.php na linha 215
+19-02-2021 18:24:37 - Twig_Error_Syntax:  Unexpected "endif" tag (expecting closing tag for the "for" tag defined near line 48) in "common/column_left.twig" at line 51. no arquivo C:\wamp64\www\weye\system\library\template\Twig\Parser.php na linha 172

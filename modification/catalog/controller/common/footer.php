@@ -83,8 +83,13 @@ class ControllerCommonFooter extends Controller {
             $data['telefone'] = $this->config->get('config_telephone');
             $data['whatsapp'] = $this->config->get('config_fax');
             $data['email'] = $this->config->get('config_email');
+            $data['email'] = $this->config->get('config_email');
             
-
+            $data['scripts'] = $this->document->getScripts('footer');
+            $data['register'] = $this->url->link('account/register', '', true);
+            $data['logged'] = $this->customer->isLogged();
+            $data['in_newsletter'] = $data['logged'] ? $this->customer->getNewsletter() : false;
+            $data['action_newsletter'] = $this->url->link('account/newsletter', '', true);
 
             $data['facebook'] = $this->config->get('config_facebook');
             $data['instagram'] = $this->config->get('config_instagram');
