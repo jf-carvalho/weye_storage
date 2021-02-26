@@ -38,6 +38,11 @@
             <li><a href="#tab-reward" data-toggle="tab">{{ tab_reward }}</a></li>
             <li><a href="#tab-seo" data-toggle="tab">{{ tab_seo }}</a></li>
             <li><a href="#tab-design" data-toggle="tab">{{ tab_design }}</a></li>
+
+                      {% if tab_compre_junto %}
+                      <li><a href="#tab-compre_junto" data-toggle="tab">{{ tab_compre_junto }}</a></li>
+                      {% endif %}
+                  
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab-general">
@@ -548,6 +553,7 @@
                               <td class="text-right" style="min-width: 100px;">{{ entry_price }}</td>
                               <td class="text-right" style="min-width: 100px;">{{ entry_option_points }}</td>
                               <td class="text-right" style="min-width: 100px;">{{ entry_weight }}</td>
+                              <td class="text-right" style="min-width: 100px;">Imagem</td>
                               <td></td>
                             </tr>
                           </thead>
@@ -626,6 +632,14 @@
                                 </select>
                                 <input type="text" name="product_option[{{ option_row }}][product_option_value][{{ option_value_row }}][weight]" value="{{ product_option_value.weight }}" placeholder="{{ entry_weight }}" class="form-control"/>
                               </td>
+                              
+                              <td class="text-left">
+                                <a href="" id="product_option{{ option_value_row }}thumbimage" data-toggle="image" class="img-thumbnail">
+                                  <img src="{{ product_option_value.image }}" alt="" title="" data-placeholder="{{ placeholder }}"/>
+                                </a>
+                                <input type="hidden" name="product_option[{{ option_row }}][product_option_value][{{ option_value_row }}][image]" value="{{ product_option_value.image_string }}" id="product_option{{ option_row }}product_option_value{{ option_value_row }}image"/>
+                              </td>
+
                               <td class="text-right"><button type="button" onclick="$(this).tooltip('destroy');$('#option-value-row{{ option_value_row }}').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
                             </tr>
                             {% set option_value_row = option_value_row + 1 %}
@@ -926,6 +940,7 @@
                 </table>
               </div>
             </div>
+{{ module_joseanmatias_compre_junto_tab }}
             <div class="tab-pane" id="tab-design">
               <div class="table-responsive">
                 <table class="table table-bordered table-hover">
@@ -1254,6 +1269,7 @@
 			  html += '        <td class="text-right" style="min-width: 100px;">{{ entry_price }}</td>';
 			  html += '        <td class="text-right" style="min-width: 100px;">{{ entry_option_points }}</td>';
 			  html += '        <td class="text-right" style="min-width: 100px;">{{ entry_weight }}</td>';
+        html += '        <td class="text-right" style="min-width: 100px;">Imagem</td>';
 			  html += '        <td></td>';
 			  html += '      </tr>';
 			  html += '  	 </thead>';
@@ -1261,7 +1277,7 @@
 			  html += '    </tbody>';
 			  html += '    <tfoot>';
 			  html += '      <tr>';
-			  html += '        <td colspan="7"></td>';
+			  html += '        <td colspan="8"></td>';
 			  html += '        <td class="text-left"><button type="button" onclick="addOptionValue(' + option_row + ');" data-toggle="tooltip" title="{{ button_option_value_add }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>';
 			  html += '      </tr>';
 			  html += '    </tfoot>';
@@ -1338,6 +1354,14 @@
 	  html += '    <option value="-">-</option>';
 	  html += '  </select>';
 	  html += '  <input type="text" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][weight]" value="" placeholder="{{ entry_weight }}" class="form-control" /></td>';
+
+    html += '<td class="text-left">'
+    html +=   '<a href="" id="product_option' + option_value_row + 'thumbimage" data-toggle="image" class="img-thumbnail">'
+    html +=     '<img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}"/>'
+    html +=   '</a>'
+    html +=   '<input type="hidden" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][image]" value="" id="product_option'+option_row+'product_option_value'+option_value_row+'image"/>'
+    html += '</td>'
+
 	  html += '  <td class="text-left"><button type="button" onclick="$(this).tooltip(\'destroy\');$(\'#option-value-row' + option_value_row + '\').remove();" data-toggle="tooltip" rel="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
 	  html += '</tr>';
 

@@ -9,18 +9,18 @@ class ControllerSettingSetting extends Controller {
 
 		$this->load->model('setting/setting');
 
-		if(isset($this->request->get['expandmenu'])){
-			$expanded = ($this->request->get['expanded']);
-			$this->model_setting_setting->editSettingValue('config', 'menu_is_expanded', $expanded);
-			die(); 
-		}
-
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->model_setting_setting->editSetting('config', $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			$this->response->redirect($this->url->link('setting/store', 'user_token=' . $this->session->data['user_token'], true));
+		}
+
+		if(isset($this->request->get['expandmenu'])){
+			$expanded = ($this->request->get['expanded']);
+			$this->model_setting_setting->editSettingValue('config', 'menu_is_expanded', $expanded);
+			die(); 
 		}
 
 		if (isset($this->error['warning'])) {
@@ -324,6 +324,12 @@ class ControllerSettingSetting extends Controller {
 			$data['config_comment'] = $this->request->post['config_comment'];
 		} else {
 			$data['config_comment'] = $this->config->get('config_comment');
+		}
+
+		if (isset($this->request->post['config_topper'])) {
+			$data['config_topper'] = $this->request->post['config_topper'];
+		} else {
+			$data['config_topper'] = $this->config->get('config_topper');
 		}
 
 		$this->load->model('localisation/location');

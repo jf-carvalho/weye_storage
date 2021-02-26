@@ -83,13 +83,12 @@ class ControllerCommonFooter extends Controller {
             $data['telefone'] = $this->config->get('config_telephone');
             $data['whatsapp'] = $this->config->get('config_fax');
             $data['email'] = $this->config->get('config_email');
-            $data['email'] = $this->config->get('config_email');
             
-            $data['scripts'] = $this->document->getScripts('footer');
-            $data['register'] = $this->url->link('account/register', '', true);
-            $data['logged'] = $this->customer->isLogged();
-            $data['in_newsletter'] = $data['logged'] ? $this->customer->getNewsletter() : false;
-            $data['action_newsletter'] = $this->url->link('account/newsletter', '', true);
+		$data['register'] = $this->url->link('account/register', '', true);
+		$data['logged'] = $this->customer->isLogged();
+		$data['in_newsletter'] = $data['logged'] ? $this->customer->getNewsletter() : false;
+		$data['action_newsletter'] = $this->url->link('account/newsletter', '', true);
+
 
             $data['facebook'] = $this->config->get('config_facebook');
             $data['instagram'] = $this->config->get('config_instagram');
@@ -101,8 +100,6 @@ class ControllerCommonFooter extends Controller {
             $data['instagram_user'] = strpos($this->config->get('config_instagram'), '/') !== false ?  explode('/', $this->config->get('config_instagram'))[count(explode('/', $this->config->get('config_instagram'))) - 1] : $this->config->get('config_instagram');
             $data['youtube_user']   = strpos($this->config->get('config_youtube'), '/')   !== false ?  explode('/', $this->config->get('config_youtube'))[count(explode('/', $this->config->get('config_youtube'))) - 1] : $this->config->get('config_youtube');
             $data['twitter_user']   = strpos($this->config->get('config_twitter'), '/')   !== false ?  explode('/', $this->config->get('config_twitter'))[count(explode('/', $this->config->get('config_twitter'))) - 1] : $this->config->get('config_twitter');
-            
-            $data['comments'] = nl2br($this->config->get('config_comment'));
             
 		return $this->load->view('common/footer', $data);
 	}
